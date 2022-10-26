@@ -1,0 +1,24 @@
+{% extends 'diary/base.html' %}
+{% load static %}
+
+{% block content %}
+    <br>
+    <div class="conteainer-fluid post">
+        {% for post in page_obj %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text border border-light border-end-0 border-start-0">{{ post.text }}</p>
+              <p class="card-text">Дата создания:<br>{{ post.date }}</p>
+              {% if post.is_changed %}
+              <p class="card-text">ред.</p>
+              {% endif %}
+              <div class="text-right">
+                <a href="/update_post/{{ post.id }}" class="card-link">Изменить</a>
+                <a href="/delete_post/{{ post.id }}" class="card-link">Удалить</a>
+              </div>
+            </div>
+          </div>
+    {% endfor %}
+    </div>
+{% endblock %}

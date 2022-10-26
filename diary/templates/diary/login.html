@@ -1,0 +1,17 @@
+{% extends 'diary/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <p>Вы уже авторизованы</p>
+    {% else %}
+        <h1>Log-in</h1>
+        <p>Please, use the following form to log-in:</p>
+        <form action="{% url 'login' %}" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Log-in"></p>
+            <p><a href="{% url 'sign_up' %}"><button type="button" class="btn btn-light">Зарегестрироваться</button></a></p>
+        </form>
+    {% endif %}
+{% endblock %}
